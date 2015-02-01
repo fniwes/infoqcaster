@@ -8,9 +8,9 @@
 	</head>
 	<body>
 
-		<h1>Video to be cast</h1>
+		<h1>Video to be cast <span id="casticon" style="display: none">CAST</span></h1>
 		<video id="video" height="250px" controls="controls">
-			<source src="http://d1snlc0orfrhj.cloudfront.net/presentations/14-sep-grails3point0preview-2.mp4"></source>
+			<ource src="http://d1snlc0orfrhj.cloudfront.net/presentations/14-sep-grails3point0preview-2.mp4"></source>
 		</video>
 
 		<h1>Current Slide</h1>
@@ -45,6 +45,40 @@
 			} else {
 				console.log(errorInfo);
 			}
+		}
+
+		var initializeCastApi = function() {
+			var sessionRequest = new chrome.cast.SessionRequest(chrome.cast.media.DEFAULT_MEDIA_RECEIVER_APP_ID);
+			var apiConfig = new chrome.cast.ApiConfig(sessionRequest,
+				sessionListener,
+				receiverListener
+			);
+			chrome.cast.initialize(apiConfig, onInitSuccess, onError);
+		};
+
+		function onInitSuccess(e) {
+			var element = document.getElementById("casticon");
+			element.addEventListener("click", function() { chrome.cast.requestSession(onRequestSessionSuccess, onLaunchError); })
+			element.style.color = "red";
+			element.style.display = "inline";
+		}
+
+		function onError() { console.log("Error", arguments); }
+
+		function onLaunchError() { console.log("launch error", arguments); }
+
+		function receiverListener(e) {
+			if( e === chrome.cast.ReceiverAvailability.AVAILABLE) {
+				console.log("Devices available");
+			}
+		}
+
+		function sessionListener(e) {
+			console.log("session listener");
+		}
+
+		function onRequestSessionSuccess(e) {
+			console.log("request session success")
 		}
 
 		</script>
