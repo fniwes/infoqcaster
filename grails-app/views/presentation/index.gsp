@@ -3,6 +3,8 @@
 	<head>
 		<title>Presentation</title>
 		<meta name="layout" content="main"/>
+
+		<script type="text/javascript" src="https://www.gstatic.com/cv/js/sender/v1/cast_sender.js"></script>
 	</head>
 	<body>
 
@@ -34,6 +36,14 @@
 			return function(previous, current, index, array) {
 				if(current < target) return current;
 				return previous;
+			}
+		}
+
+		window['__onGCastApiAvailable'] = function(loaded, errorInfo) {
+			if (loaded) {
+				initializeCastApi();
+			} else {
+				console.log(errorInfo);
 			}
 		}
 
