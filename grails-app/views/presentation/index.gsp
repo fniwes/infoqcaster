@@ -57,6 +57,10 @@
 		};
 
 		function onInitSuccess(e) {
+			console.log("on init success")
+		}
+
+		function showCastButton() {
 			var element = document.getElementById("casticon");
 			element.addEventListener("click", function() { chrome.cast.requestSession(onRequestSessionSuccess, onLaunchError); })
 			element.style.color = "red";
@@ -70,6 +74,7 @@
 		function receiverListener(e) {
 			if( e === chrome.cast.ReceiverAvailability.AVAILABLE) {
 				console.log("Devices available");
+				showCastButton();
 			}
 		}
 
