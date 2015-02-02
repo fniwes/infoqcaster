@@ -78,13 +78,31 @@
 			}
 		}
 
-		function sessionListener(e) {
-			console.log("session listener");
+		function sessionListener(session) {
+			console.log("session listener", session);
 		}
 
-		function onRequestSessionSuccess(e) {
+		function onRequestSessionSuccess( session ) {
 			console.log("request session success")
+
+			// user accept to cast to a device
+			var mediaInfo = new chrome.cast.media.MediaInfo("http://d1snlc0orfrhj.cloudfront.net/presentations/14-sep-grails3point0preview-2.mp4");
+			mediaInfo.contentType = 'video/mp4';
+			var request = new chrome.cast.media.LoadRequest(mediaInfo);
+
+			session.loadMedia(request, onMediaDiscovered.bind(this, 'loadMedia'), onMediaError)
 		}
+
+		function onMediaDiscovered(how, media) {
+   			console.log("media discovered", how, media);
+   			media.addUpdateListener(onMediaStatusUpdate);
+   			media.play(null, onPlaySuccess, onPlayError);
+		}
+
+		function onPlaySuccess() { console.log("play media success")}
+		function onPlayError() { console.log("play media error")}
+		function onMediaError() { console.log("on media error", arguments); }
+		function onMediaStatusUpdate() { console.log("media status update", arguments); }
 
 		</script>
 	</body>
