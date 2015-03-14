@@ -832,41 +832,7 @@ CastPlayer.prototype.getPlayerState = function() {
 CastPlayer.prototype.selectMediaUpdateUI = function() {
   if(this.onSelectMediaUpdateUI)
     this.onSelectMediaUpdateUI()
-};
-
-/**
- * Show the media control 
- */
-CastPlayer.prototype.showMediaControl = function() {
-  document.getElementById('media_control').style.opacity = 0.7;
-};    
-
-/**
- * Hide the media control  
- */
-CastPlayer.prototype.hideMediaControl = function() {
-  document.getElementById('media_control').style.opacity = 0;
-};    
-
-/**
- * Show the volume slider
- */
-CastPlayer.prototype.showVolumeSlider = function() {
-  document.getElementById('audio_bg').style.opacity = 1;
-  document.getElementById('audio_bg_track').style.opacity = 1;
-  document.getElementById('audio_bg_level').style.opacity = 1;
-  document.getElementById('audio_indicator').style.opacity = 1;
-};    
-
-/**
- * Hide the volume slider 
- */
-CastPlayer.prototype.hideVolumeSlider = function() {
-  document.getElementById('audio_bg').style.opacity = 0;
-  document.getElementById('audio_bg_track').style.opacity = 0;
-  document.getElementById('audio_bg_level').style.opacity = 0;
-  document.getElementById('audio_indicator').style.opacity = 0;
-};    
+}; 
 
 /**
  * Request full screen mode 
@@ -895,41 +861,6 @@ CastPlayer.prototype.cancelFullScreen = function() {
 };
 
 /**
- * Exit fullscreen mode by escape 
- */
-CastPlayer.prototype.changeHandler = function(){
-  this.fullscreen = !this.fullscreen;
-  if (this.deviceState == DEVICE_STATE.ACTIVE) {
-    this.hideFullscreenButton();
-  }
-  else {
-    this.showFullscreenButton();
-  }
-};
-
-/**
- * Show expand/collapse fullscreen button
- */
-CastPlayer.prototype.showFullscreenButton = function(){
-  if (this.fullscreen) {
-    document.getElementById('fullscreen_expand').style.display = 'none';
-    document.getElementById('fullscreen_collapse').style.display = 'block';
-  }
-  else {
-    document.getElementById('fullscreen_expand').style.display = 'block';
-    document.getElementById('fullscreen_collapse').style.display = 'none';
-  }
-};
-
-/**
- * Hide expand/collapse fullscreen button
- */
-CastPlayer.prototype.hideFullscreenButton = function(){
-  document.getElementById('fullscreen_expand').style.display = 'none';
-  document.getElementById('fullscreen_collapse').style.display = 'none';
-};
-
-/**
  * @param {function} A callback function for the function to start timer 
  */
 CastPlayer.prototype.startProgressTimer = function(callback) {
@@ -941,48 +872,6 @@ CastPlayer.prototype.startProgressTimer = function(callback) {
   // start progress timer
   this.timer = setInterval(callback.bind(this), this.timerStep);
 };
-
-/**
- * Do AJAX call to load media json
- * @param {String} src A URL for media json.
- */
-CastPlayer.prototype.retrieveMediaJSON = function(src) {
-  var xhr = new XMLHttpRequest();
-  xhr.addEventListener('load', this.onMediaJsonLoad.bind(this));
-  xhr.addEventListener('error', this.onMediaJsonError.bind(this));
-  xhr.open('GET', src);
-  xhr.setRequestHeader('Access-Control-Allow-Origin', '*');
-  xhr.responseType = "json";
-  xhr.send(null);
-};
-
-/**
- * Callback function for AJAX call on load success
- * @param {Object} evt An object returned from Ajax call
- */
-CastPlayer.prototype.onMediaJsonLoad = function(evt) {
-  var responseJson = evt.srcElement.response;
-  this.mediaContents = responseJson['categories'][0]['videos'];
-  var ni = document.getElementById('carousel');
-  var newdiv = null;
-  var divIdName = null;
-  for( var i = 0; i < this.mediaContents.length; i++ ) {
-    newdiv = document.createElement('div');
-    divIdName = 'thumb'+i+'Div';
-    newdiv.setAttribute('id',divIdName);
-    newdiv.setAttribute('class','thumb');
-    newdiv.innerHTML = '<img src="' + MEDIA_SOURCE_ROOT + this.mediaContents[i]['thumb'] + '" class="thumbnail">';
-    newdiv.addEventListener('click', this.selectMedia.bind(this, i));
-    ni.appendChild(newdiv);
-  }
-}
-
-/**
- * Callback function for AJAX call on load error
- */
-CastPlayer.prototype.onMediaJsonError = function() {
-  console.log("Failed to load media JSON");
-}
 
  window.CastPlayer = CastPlayer;
 })();
