@@ -6,6 +6,8 @@
 // to create separate JavaScript files as needed.
 //
 //= require jquery
+//= require CastVideos
+//= require infoqadapter
 //= require_tree .
 //= require_self
 
