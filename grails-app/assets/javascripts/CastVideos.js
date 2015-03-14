@@ -142,8 +142,7 @@ CastPlayer.prototype.initializeCastPlayer = function() {
   }
   // default set to the default media receiver app ID
   // optional: you may change it to point to your own
-  //var applicationID = chrome.cast.media.DEFAULT_MEDIA_RECEIVER_APP_ID;
-  var applicationID = '4F8B3483';
+  var applicationID = chrome.cast.media.DEFAULT_MEDIA_RECEIVER_APP_ID;
 
   // auto join policy can be one of the following three
   var autoJoinPolicy = chrome.cast.AutoJoinPolicy.ORIGIN_SCOPED;
@@ -379,11 +378,6 @@ CastPlayer.prototype.loadMedia = function() {
   this.session.loadMedia(request,
     this.onMediaDiscovered.bind(this, 'loadMedia'),
     this.onLoadMediaError.bind(this));
-
-  // document.getElementById("media_title").innerHTML = this.mediaContents[this.currentMediaIndex]['title'];
-  // document.getElementById("media_subtitle").innerHTML = this.mediaContents[this.currentMediaIndex]['subtitle'];
-  // document.getElementById("media_desc").innerHTML = this.mediaContents[this.currentMediaIndex]['description'];
-
 };
 
 /**
