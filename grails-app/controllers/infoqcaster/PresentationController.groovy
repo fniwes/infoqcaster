@@ -1,9 +1,9 @@
 package infoqcaster
 class PresentationController {
 
-    def index() {
+    def index(String url) {
+    	def presentation = url
     	def useragent = "Mozilla/6.0 (iPhone; CPU iPhone OS 8_0 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) Version/8.0 Mobile/10A5376e Safari/8536.25"
-    	def presentation = "http://www.infoq.com/presentations/demo-java-javascript-mongodb"
 
     	def timesLine = ""
     	def slidesLine = ""
