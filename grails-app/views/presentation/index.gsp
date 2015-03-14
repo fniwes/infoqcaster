@@ -88,7 +88,21 @@
 		});
 
 		document.getElementById("cast").addEventListener("click", function() {
-			castPlayer.launchApp();
+			var DEVICE_STATE = {
+			  'IDLE' : 0, 
+			  'ACTIVE' : 1, 
+			  'WARNING' : 2, 
+			  'ERROR' : 3,
+			};
+
+			if(castPlayer.deviceState === DEVICE_STATE.IDLE )
+				castPlayer.launchApp();
+
+			else if(castPlayer.deviceState === DEVICE_STATE.ACTIVE )
+				castPlayer.stopApp();
+
+			else
+				console.log("I do not know what to do in this state. " + castPlayer.deviceState);
 		})
 
 		function greaterSmallerThan( target ) {
