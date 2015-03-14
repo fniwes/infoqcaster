@@ -821,19 +821,8 @@ CastPlayer.prototype.updateProgressBarByTimer = function() {
  * Update display message depending on cast mode by deviceState 
  */
 CastPlayer.prototype.updateDisplayMessage = function() {
-  if( this.deviceState != DEVICE_STATE.ACTIVE || this.castPlayerState == PLAYER_STATE.IDLE || this.castPlayerState == PLAYER_STATE.STOPPED ) {
-    document.getElementById("playerstate").style.display = 'none';
-    document.getElementById("playerstatebg").style.display = 'none';
-    document.getElementById("play").style.display = 'block';
-    document.getElementById("video_image_overlay").style.display = 'none';
-  }
-  else {
-    document.getElementById("playerstate").style.display = 'block';
-    document.getElementById("playerstatebg").style.display = 'block';
-    document.getElementById("video_image_overlay").style.display = 'block';
-    document.getElementById("playerstate").innerHTML = this.presentation.title + " "
-      + this.castPlayerState + " on " + this.session.receiver.friendlyName;
-  }
+  if( this.onUpdateDisplayMessage )
+    this.onUpdateDisplayMessage();
 }
 
 /**
@@ -863,9 +852,8 @@ CastPlayer.prototype.getPlayerState = function() {
  * Update UI components after selectMedia call 
  */
 CastPlayer.prototype.selectMediaUpdateUI = function() {
-  document.getElementById('video_image').src = this.presentation.thumbnail;
-  document.getElementById("progress").style.width = '0px';
-  document.getElementById("media_title").innerHTML = this.presentation.title;
+  if(this.onSelectMediaUpdateUI)
+    this.onSelectMediaUpdateUI()
 };
 
 /**

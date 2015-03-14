@@ -87,6 +87,10 @@
 			}
 		});
 
+		document.getElementById("cast").addEventListener("click", function() {
+			castPlayer.launchApp();
+		})
+
 		function greaterSmallerThan( target ) {
 			return function(previous, current, index, array) {
 				if(current < target) return current;
