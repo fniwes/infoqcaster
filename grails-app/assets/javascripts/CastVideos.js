@@ -157,8 +157,6 @@ CastPlayer.prototype.initializeCastPlayer = function() {
     autoJoinPolicy);
 
   chrome.cast.initialize(apiConfig, this.onInitSuccess.bind(this), this.onError.bind(this));
-
-  this.initializeUI();
 };
 
 /**
@@ -775,22 +773,8 @@ CastPlayer.prototype.mediaCommandSuccessCallback = function(info, e) {
  * @param {Object} e An media status update object 
  */
 CastPlayer.prototype.updateProgressBar = function(e) {
-  console.log("updateProgressBar");
-  var p = document.getElementById("progress"); 
-  var pi = document.getElementById("progress_indicator"); 
-  if( e == false ) {
-    p.style.width = '0px';
-    pi.style.marginLeft = -21 - PROGRESS_BAR_WIDTH + 'px';
-    clearInterval(this.timer);
-    this.castPlayerState = PLAYER_STATE.STOPPED;
-    this.updateDisplayMessage();
-  } else {
-    p.style.width = Math.ceil(PROGRESS_BAR_WIDTH * this.currentMediaSession.currentTime / this.currentMediaSession.media.duration + 1) + 'px';
-    this.progressFlag = false; 
-    setTimeout(this.setProgressFlag.bind(this),1000); // don't update progress in 1 second
-    var pp = Math.ceil(PROGRESS_BAR_WIDTH * this.currentMediaSession.currentTime / this.currentMediaSession.media.duration);
-    pi.style.marginLeft = -21 - PROGRESS_BAR_WIDTH + pp + 'px';
-  }
+  console.log("Caling updateProgressBar", e);
+  // NOT Sure when this method is usefull instead of updateProgressBarByTimer
 };
 
 /**
@@ -848,37 +832,6 @@ CastPlayer.prototype.getPlayerState = function() {
 CastPlayer.prototype.selectMediaUpdateUI = function() {
   if(this.onSelectMediaUpdateUI)
     this.onSelectMediaUpdateUI()
-};
-
-/**
- * Initialize UI components and add event listeners 
- */
-CastPlayer.prototype.initializeUI = function() {
-  // add event handlers to UI components
-  document.getElementById("casticonidle").addEventListener('click', this.launchApp.bind(this));
-  document.getElementById("casticonactive").addEventListener('click', this.stopApp.bind(this));
-  document.getElementById("progress").addEventListener('click', this.seekMedia.bind(this));
-  document.getElementById("progress_indicator").addEventListener('dragend', this.seekMedia.bind(this));
-  document.getElementById("audio_on").addEventListener('click', this.muteMedia.bind(this));
-  document.getElementById("audio_off").addEventListener('click', this.muteMedia.bind(this));
-  document.getElementById("audio_bg").addEventListener('mouseover', this.showVolumeSlider.bind(this));
-  document.getElementById("audio_on").addEventListener('mouseover', this.showVolumeSlider.bind(this));
-  document.getElementById("audio_bg_level").addEventListener('mouseover', this.showVolumeSlider.bind(this));
-  document.getElementById("audio_bg_track").addEventListener('mouseover', this.showVolumeSlider.bind(this));
-  document.getElementById("audio_bg_level").addEventListener('click', this.setReceiverVolume.bind(this, false));
-  document.getElementById("audio_bg_track").addEventListener('click', this.setReceiverVolume.bind(this, false));
-  document.getElementById("audio_bg").addEventListener('mouseout', this.hideVolumeSlider.bind(this));
-  document.getElementById("audio_on").addEventListener('mouseout', this.hideVolumeSlider.bind(this));
-  document.getElementById("media_control").addEventListener('mouseover', this.showMediaControl.bind(this));
-  document.getElementById("media_control").addEventListener('mouseout', this.hideMediaControl.bind(this));
-  document.getElementById("fullscreen_expand").addEventListener('click', this.requestFullScreen.bind(this));
-  document.getElementById("fullscreen_collapse").addEventListener('click', this.cancelFullScreen.bind(this));
-  document.addEventListener("fullscreenchange", this.changeHandler.bind(this), false);      
-  document.addEventListener("webkitfullscreenchange", this.changeHandler.bind(this), false);
-
-  // enable play/pause buttons
-  document.getElementById("progress_indicator").draggable = true;
-
 };
 
 /**

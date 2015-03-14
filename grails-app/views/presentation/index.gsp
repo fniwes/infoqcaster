@@ -14,22 +14,7 @@
 				<div id="cast">Cast</div>
 			</div>
        	</div>
-
-		<div id="media_control">
-           <div id="progress"></div>
-           <div id="progress_indicator"></div>
-           <div id="fullscreen_expand"></div>
-           <div id="fullscreen_collapse"></div>
-           <div id="casticonactive"></div>
-           <div id="casticonidle"></div>
-           <div id="audio_bg"></div>
-           <div id="audio_bg_track"></div>
-           <div id="audio_indicator"></div>
-           <div id="audio_bg_level"></div>
-           <div id="audio_on"></div>
-           <div id="audio_off"></div>
-           <div id="duration">00:00:00</div>
-        </div>
+       <div id="duration">00:00:00</div>
 
         <div id="media_info">
 	        <div id="media_title"></div>
