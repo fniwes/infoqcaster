@@ -7,16 +7,15 @@
 		<script type="text/javascript" src="https://www.gstatic.com/cv/js/sender/v1/cast_sender.js"></script>
 	</head>
 	<body>
-		<img src="#" id="video_image">
-       	<div class="blackbg" id="playerstatebg">IDLE</div>
-       	<div class=label id="playerstate">IDLE</div>
-		<div id="video_image_overlay"></div>
-
-		<video id="video_element"></video>
+       	<div class="presenter">
+			<video id="video_element"></video>
+			<div id="controls">
+				<div id="play">Play / Pause</div>
+				<div id="cast">Cast</div>
+			</div>
+       	</div>
 
 		<div id="media_control">
-           <div id="play">Play</div>
-           <div id="pause">Pause</div>
            <div id="progress"></div>
            <div id="progress_indicator"></div>
            <div id="fullscreen_expand"></div>
@@ -68,12 +67,33 @@
 			document.getElementById("slide").src = slideBase + slides[currentSlideIndex];
 		}
 
+
 		function greaterSmallerThan( target ) {
 			return function(previous, current, index, array) {
 				if(current < target) return current;
 				return previous;
 			}
 		}
+
+		document.getElementById("play").addEventListener("click", function() {
+			switch(castPlayer.getPlayerState()) {
+			    case "LOADED":
+			    case "PLAYING":
+			    	castPlayer.pauseMedia();
+			    	break;
+
+			    case "PAUSED":
+			    case "IDLE":
+			    case "LOADING":
+			    case "	":
+			    	castPlayer.playMedia();
+			    	break;
+
+			    default:
+			    	console.log("Not expected player state.");
+			      	break;
+			}
+		});
 		</script>
 	</body>
 </html>

@@ -493,8 +493,6 @@ CastPlayer.prototype.incrementMediaTime = function() {
  * Play media in local player
  */
 CastPlayer.prototype.playMediaLocally = function() {
-  var vi = document.getElementById('video_image')
-  vi.style.display = 'none';
   this.localPlayer.style.display = 'block';
   if( this.localPlayerState != PLAYER_STATE.PLAYING && this.localPlayerState != PLAYER_STATE.PAUSED ) { 
     this.localPlayer.src = this.presentation.video;
@@ -627,8 +625,6 @@ CastPlayer.prototype.stopMedia = function() {
  * Stop media playback in local player
  */
 CastPlayer.prototype.stopMediaLocally = function() {
-  var vi = document.getElementById('video_image')
-  vi.style.display = 'block';
   this.localPlayer.style.display = 'none';
   this.localPlayer.stop();
   this.localPlayerState = PLAYER_STATE.STOPPED;
@@ -844,41 +840,23 @@ CastPlayer.prototype.updateDisplayMessage = function() {
  * Update media control UI components based on localPlayerState or castPlayerState
  */
 CastPlayer.prototype.updateMediaControlUI = function() {
-  var playerState = this.deviceState == DEVICE_STATE.ACTIVE ? this.castPlayerState : this.localPlayerState;
-  switch ( playerState )
-  {
-    case PLAYER_STATE.LOADED:
-    case PLAYER_STATE.PLAYING:
-      document.getElementById("play").style.display = 'none';
-      document.getElementById("pause").style.display = 'block';
-      break;
-    case PLAYER_STATE.PAUSED:
-    case PLAYER_STATE.IDLE:
-    case PLAYER_STATE.LOADING:
-    case PLAYER_STATE.STOPPED:
-      document.getElementById("play").style.display = 'block';
-      document.getElementById("pause").style.display = 'none';
-      break;
-    default:
-      break;
-  }
+  var playerState = this.getPlayerState()
 
-  if( !this.receivers_available ) {
-    document.getElementById("casticonactive").style.display = 'none';
-    document.getElementById("casticonidle").style.display = 'none';
-    return;
-  }
+  if(this.onPlayerStateUpdate)
+    this.onPlayerStateUpdate(playerState);
 
-  if( this.deviceState == DEVICE_STATE.ACTIVE ) {
-    document.getElementById("casticonactive").style.display = 'block';
-    document.getElementById("casticonidle").style.display = 'none';
-    this.hideFullscreenButton();
-  }
-  else {
-    document.getElementById("casticonidle").style.display = 'block';
-    document.getElementById("casticonactive").style.display = 'none';
-    this.showFullscreenButton();
-  }
+  if(this.onReceiverStateUpdate)
+    this.onReceiverStateUpdate(this.receivers_available);
+
+  if(this.receivers_available && this.onDeviceStateUpdate)
+    this.onDeviceStateUpdate(this.deviceState);
+}
+
+/**
+ * Get the current player state.
+ */
+CastPlayer.prototype.getPlayerState = function() {
+  return this.deviceState == DEVICE_STATE.ACTIVE ? this.castPlayerState : this.localPlayerState;
 }
 
 /**
@@ -917,8 +895,6 @@ CastPlayer.prototype.initializeUI = function() {
   document.addEventListener("webkitfullscreenchange", this.changeHandler.bind(this), false);
 
   // enable play/pause buttons
-  document.getElementById("play").addEventListener('click', this.playMedia.bind(this));
-  document.getElementById("pause").addEventListener('click', this.pauseMedia.bind(this));
   document.getElementById("progress_indicator").draggable = true;
 
 };

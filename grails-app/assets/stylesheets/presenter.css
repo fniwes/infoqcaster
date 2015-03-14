@@ -1,0 +1,8 @@
+.presenter {
+	width: 30%;
+}
+
+.presenter video {
+	background-color: red;
+	width: 100%
+}
