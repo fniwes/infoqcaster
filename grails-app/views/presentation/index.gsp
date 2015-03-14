@@ -7,16 +7,19 @@
 		<script type="text/javascript" src="https://www.gstatic.com/cv/js/sender/v1/cast_sender.js"></script>
 	</head>
 	<body>
+	<div class="">
        	<div class="presenter">
 			<video id="video_element"></video>
 			<div id="controls">
 				<div id="play">Play / Pause</div>
 				<div id="cast">Cast</div>
+		       	<div id="duration">00:00:00</div>
 			</div>
        	</div>
-       <div id="duration">00:00:00</div>
 
-		<img id="slide" height="250px" />
+		<img id="slide" />
+	</div>
+
 		<script>
 		var presentation = {
 			slides: ['/resource/presentations/grails-3-preview/en/slides/sl1.jpg','/resource/presentations/grails-3-preview/en/slides/sl2.jpg','/resource/presentations/grails-3-preview/en/slides/sl3.jpg','/resource/presentations/grails-3-preview/en/slides/sl4.jpg','/resource/presentations/grails-3-preview/en/slides/sl5.jpg','/resource/presentations/grails-3-preview/en/slides/sl6.jpg','/resource/presentations/grails-3-preview/en/slides/sl7.jpg','/resource/presentations/grails-3-preview/en/slides/sl8.jpg','/resource/presentations/grails-3-preview/en/slides/sl9.jpg','/resource/presentations/grails-3-preview/en/slides/sl10.jpg','/resource/presentations/grails-3-preview/en/slides/sl11.jpg','/resource/presentations/grails-3-preview/en/slides/sl12.jpg','/resource/presentations/grails-3-preview/en/slides/sl13.jpg','/resource/presentations/grails-3-preview/en/slides/sl14.jpg','/resource/presentations/grails-3-preview/en/slides/sl15.jpg','/resource/presentations/grails-3-preview/en/slides/sl16.jpg','/resource/presentations/grails-3-preview/en/slides/sl17.jpg','/resource/presentations/grails-3-preview/en/slides/sl18.jpg','/resource/presentations/grails-3-preview/en/slides/sl19.jpg','/resource/presentations/grails-3-preview/en/slides/sl20.jpg','/resource/presentations/grails-3-preview/en/slides/sl21.jpg','/resource/presentations/grails-3-preview/en/slides/sl22.jpg','/resource/presentations/grails-3-preview/en/slides/sl23.jpg','/resource/presentations/grails-3-preview/en/slides/sl24.jpg','/resource/presentations/grails-3-preview/en/slides/sl25.jpg','/resource/presentations/grails-3-preview/en/slides/sl26.jpg','/resource/presentations/grails-3-preview/en/slides/sl27.jpg','/resource/presentations/grails-3-preview/en/slides/sl28.jpg','/resource/presentations/grails-3-preview/en/slides/sl29.jpg','/resource/presentations/grails-3-preview/en/slides/sl30.jpg','/resource/presentations/grails-3-preview/en/slides/sl31.jpg','/resource/presentations/grails-3-preview/en/slides/sl32.jpg','/resource/presentations/grails-3-preview/en/slides/sl33.jpg','/resource/presentations/grails-3-preview/en/slides/sl34.jpg','/resource/presentations/grails-3-preview/en/slides/sl35.jpg','/resource/presentations/grails-3-preview/en/slides/sl36.jpg','/resource/presentations/grails-3-preview/en/slides/sl37.jpg','/resource/presentations/grails-3-preview/en/slides/sl38.jpg','/resource/presentations/grails-3-preview/en/slides/sl39.jpg','/resource/presentations/grails-3-preview/en/slides/sl40.jpg','/resource/presentations/grails-3-preview/en/slides/sl39.jpg','/resource/presentations/grails-3-preview/en/slides/sl41.jpg','/resource/presentations/grails-3-preview/en/slides/sl42.jpg','/resource/presentations/grails-3-preview/en/slides/sl43.jpg','/resource/presentations/grails-3-preview/en/slides/sl44.jpg','/resource/presentations/grails-3-preview/en/slides/sl45.jpg','/resource/presentations/grails-3-preview/en/slides/sl46.jpg','/resource/presentations/grails-3-preview/en/slides/sl47.jpg','/resource/presentations/grails-3-preview/en/slides/sl48.jpg'],
