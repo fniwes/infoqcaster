@@ -67,14 +67,6 @@
 			document.getElementById("slide").src = slideBase + slides[currentSlideIndex];
 		}
 
-
-		function greaterSmallerThan( target ) {
-			return function(previous, current, index, array) {
-				if(current < target) return current;
-				return previous;
-			}
-		}
-
 		document.getElementById("play").addEventListener("click", function() {
 			switch(castPlayer.getPlayerState()) {
 			    case "LOADED":
@@ -94,6 +86,13 @@
 			      	break;
 			}
 		});
+
+		function greaterSmallerThan( target ) {
+			return function(previous, current, index, array) {
+				if(current < target) return current;
+				return previous;
+			}
+		}
 		</script>
 	</body>
 </html>
