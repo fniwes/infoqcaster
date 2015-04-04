@@ -1,3 +1,10 @@
+@import url(http://fonts.googleapis.com/css?family=Corben);
+h1.main-title { font-family: 'Corben', cursive; text-align: center;}
+h2.section-title { font-family: 'Corben', cursive; }
+
+.latest-presentations li { white-space: nowrap; text-overflow: ellipsis;  overflow: hidden; }
+
+
 .presenter {
 	width: 30%;
 	float: left;

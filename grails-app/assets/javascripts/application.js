@@ -7,7 +7,6 @@
 //
 //= require jquery
 //= require CastVideos
-//= require infoqadapter
 //= require_tree .
 //= require_self
 
