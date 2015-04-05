@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta name="layout" content="main"/>
-        <title>Presentation</title>
+        <title>InfoqCaster</title>
     </head>
     <body>
         <form class="row" action="${createLink(controller: 'presentation', action: 'index')}">
@@ -15,7 +15,7 @@
             </div>
         </form>
         <div class="row">
-            <div class="col-md-6 latest-presentations">
+            <div class="col-md-6 presentation-list">
                 <h2 class="section-title">Latests presentations</h2>
                 <ul>
                     <g:each var="item" in="${items}">
@@ -23,7 +23,7 @@
                     </g:each>
                 </ul>
             </div>
-            <div class="col-md-6 recently-viewed">
+            <div class="col-md-6 presentation-list">
                 <h2 class="section-title">Recently viewed</h2>
                 <ul>
                     <g:each var="item" in="${watched}">

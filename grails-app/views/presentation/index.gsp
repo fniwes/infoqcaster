@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Presentation</title>
+		<title>${title} - InfoqCaster</title>
 		<meta name="layout" content="main"/>
 
 		<script type="text/javascript" src="https://www.gstatic.com/cv/js/sender/v1/cast_sender.js"></script>
