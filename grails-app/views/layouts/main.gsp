@@ -14,7 +14,9 @@
 	</head>
 	<body>
 		<div class="container">
-			<h1 class="main-title">InfoqCaster</h1>
+			<h1 class="main-title">
+				InfoqCaster<g:if test="${title}">: ${title}</g:if>
+			</h1>
 			<g:layoutBody />
 		</div>
 	</body>
