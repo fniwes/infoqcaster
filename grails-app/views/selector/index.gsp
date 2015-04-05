@@ -25,6 +25,11 @@
             </div>
             <div class="col-md-6 recently-viewed">
                 <h2 class="section-title">Recently viewed</h2>
+                <ul>
+                    <g:each var="item" in="${watched}">
+                        <li><a href="${createLink(controller: 'presentation', action: 'index', params: [url: item.url])}">${item.title}</a></li>
+                    </g:each>
+                </ul>
             </div>
         </div>
     </body>

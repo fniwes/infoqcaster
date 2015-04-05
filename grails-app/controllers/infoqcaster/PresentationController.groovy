@@ -3,6 +3,8 @@ class PresentationController {
     def infoqService
 
     def index(String url) {
-        infoqService.information( url )
+        def result = infoqService.information( url )
+        infoqService.watch( result.url, result.title )
+        result
     }
 }

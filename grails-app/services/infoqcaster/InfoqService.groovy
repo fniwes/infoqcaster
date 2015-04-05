@@ -1,6 +1,8 @@
 package infoqcaster
 
 class InfoqService {
+    def watched = [:]
+
     def recentPresentations() {
         def xml = new XmlSlurper().parse("http://www.infoq.com/feed/presentations?token=NpiZ08bVi2xgRxi2BSXi0ArBW7CI67gi")
         xml.channel.item.collect {
@@ -9,8 +11,7 @@ class InfoqService {
     }
 
     def watchedPresentations() {
-        println "Recuperando presentaciones"
-        return []
+        watched.collect { key, value -> [title: value, url: key] }
     }
 
     def information( presentation ) {
@@ -42,7 +43,11 @@ class InfoqService {
         def mp4 = videoLine =~ "\".*\""
         mp4 = (mp4[0]).replace("\"", "")
 
-        [video: mp4, times: times, slides: slides, title: title]
+        [video: mp4, times: times, slides: slides, title: title, url: presentation]
+    }
+
+    def watch( String url, String title) {
+        watched[url] = title
     }
 
     private String adaptPresentationName(String name) {
