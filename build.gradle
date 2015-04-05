@@ -69,6 +69,7 @@ dependencies {
   testRuntime 'org.seleniumhq.selenium:selenium-htmlunit-driver:2.44.0'
 
   console "org.grails:grails-console"
+  compile 'org.ccil.cowan.tagsoup:tagsoup:1.2'
 }
 
 task wrapper(type: Wrapper) {

@@ -32,7 +32,7 @@
 			slides: ${raw(slides)},
 			times: ${times},
 			video: "${video}",
-			title: "Gramer Rocher hablando sobre Grails 3",
+			title: "${title}",
 			thumbnail: "#"
 		}
 
